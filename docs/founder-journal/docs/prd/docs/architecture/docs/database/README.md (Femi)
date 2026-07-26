@@ -1,0 +1,359 @@
+# FunHub Database Design Document
+
+## Purpose
+
+This document defines the structure of the FunHub database.
+
+The database is designed to support customers, entertainment businesses, bookings, payments, reviews, social activities, and future expansion.
+
+---
+
+# Database Technology
+
+Database:
+
+PostgreSQL
+
+Database Management:
+
+Prisma ORM
+
+---
+
+# Core Database Modules
+
+The FunHub database is divided into the following modules:
+
+1. User Management
+2. Business Management
+3. Entertainment Management
+4. Booking Management
+5. Payment Management
+6. Review Management
+7. Social Features
+8. Subscription Management
+9. Recommendation System
+10. Administration
+
+---
+
+# 1. User Management
+
+## Users
+
+Stores all people using FunHub.
+
+Information:
+
+- User ID
+- Full Name
+- Email
+- Phone Number
+- Password
+- Profile Picture
+- Location
+- Account Status
+- Created Date
+
+---
+
+## Roles
+
+Controls user permissions.
+
+Examples:
+
+- Customer
+- Business Owner
+- Business Staff
+- Administrator
+
+---
+
+# 2. Business Management
+
+## Businesses
+
+Stores registered entertainment companies.
+
+Information:
+
+- Business ID
+- Business Name
+- Owner
+- Category
+- Description
+- Verification Status
+- Subscription Plan
+- Created Date
+
+---
+
+## Branches
+
+A business can have multiple locations.
+
+Information:
+
+- Branch ID
+- Business ID
+- Address
+- GPS Location
+- Opening Hours
+- Contact Information
+
+---
+
+# 3. Entertainment Management
+
+## Categories
+
+Examples:
+
+- Amusement Park
+- Arcade
+- Water Park
+- Cinema
+- Hotel
+- Restaurant
+- Events
+
+---
+
+## Attractions
+
+Individual experiences.
+
+Examples:
+
+- Roller Coaster
+- Swimming Pool
+- Mini Golf
+- VR Games
+
+Information:
+
+- Attraction Name
+- Description
+- Price
+- Availability
+
+---
+
+## Events
+
+Stores special activities.
+
+Examples:
+
+- Concerts
+- Festivals
+- Competitions
+
+---
+
+# 4. Booking Management
+
+## Bookings
+
+Stores customer reservations.
+
+Information:
+
+- Customer
+- Business
+- Activity
+- Date
+- Number of People
+- Booking Status
+
+---
+
+## Tickets
+
+Stores purchased tickets.
+
+Information:
+
+- Ticket Number
+- Booking ID
+- QR Code
+- Status
+
+---
+
+# 5. Payment Management
+
+## Payments
+
+Stores financial transactions.
+
+Information:
+
+- Customer
+- Amount
+- Payment Method
+- Transaction Reference
+- Status
+- Date
+
+---
+
+# 6. Review Management
+
+## Reviews
+
+Stores customer experiences.
+
+Information:
+
+- Customer
+- Business
+- Rating
+- Comment
+- Date
+
+---
+
+# 7. Social Features
+
+## Posts
+
+Customers can share their experiences.
+
+Information:
+
+- User
+- Caption
+- Images
+- Location
+- Date
+
+---
+
+## Followers
+
+Allows users to follow other users.
+
+---
+
+## Comments
+
+Allows interaction between users.
+
+---
+
+# 8. Subscription Management
+
+## Plans
+
+Examples:
+
+- Free
+- Basic
+- Premium
+- Enterprise
+
+---
+
+## Subscriptions
+
+Stores business subscription history.
+
+Information:
+
+- Business
+- Plan
+- Start Date
+- End Date
+- Status
+
+---
+
+# 9. Recommendation System
+
+## User Preferences
+
+Stores:
+
+- Favourite activities
+- Search history
+- Preferred locations
+- Budget range
+
+---
+
+## Recommendation History
+
+Stores suggestions shown to users.
+
+---
+
+# 10. Administration
+
+## Audit Logs
+
+Tracks important actions.
+
+Examples:
+
+- Business approval
+- Payment changes
+- Account changes
+
+---
+
+# Database Relationship Overview
+
+Users
+
+↓
+
+Bookings
+
+↓
+
+Businesses
+
+↓
+
+Branches
+
+↓
+
+Attractions
+
+
+Users
+
+↓
+
+Reviews
+
+↓
+
+Businesses
+
+
+Businesses
+
+↓
+
+Subscriptions
+
+↓
+
+Payments
+
+---
+
+# Design Principle
+
+The FunHub database must be:
+
+- Secure
+- Scalable
+- Efficient
+- Easy to maintain
+
+The design must support expansion from Nigeria to other African countries.
