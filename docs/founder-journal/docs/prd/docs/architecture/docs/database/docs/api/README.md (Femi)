@@ -1,0 +1,290 @@
+# FunHub API Documentation
+
+## Purpose
+
+This document defines how FunHub applications communicate with the backend system.
+
+The API acts as the connection between:
+
+- Customer Application
+- Business Application
+- Admin Dashboard
+- Backend Services
+- Database
+
+---
+
+# API Technology
+
+Backend Framework:
+
+NestJS
+
+Programming Language:
+
+TypeScript
+
+Communication Format:
+
+REST API
+
+Data Format:
+
+JSON
+
+---
+
+# Authentication
+
+FunHub uses secure authentication.
+
+Methods:
+
+- Email login
+- Phone login
+- Password authentication
+- JWT access tokens
+- Refresh tokens
+
+---
+
+# API Structure
+
+Base URL:
+
+/api/v1
+
+Example:
+
+GET /api/v1/businesses
+
+---
+
+# User APIs
+
+## Register User
+
+POST
+
+/users/register
+
+Purpose:
+
+Creates a new customer account.
+
+---
+
+## Login User
+
+POST
+
+/users/login
+
+Purpose:
+
+Authenticates a user.
+
+---
+
+## Get Profile
+
+GET
+
+/users/profile
+
+Purpose:
+
+Returns user information.
+
+---
+
+# Business APIs
+
+## Register Business
+
+POST
+
+/businesses/register
+
+Purpose:
+
+Allows businesses to join FunHub.
+
+---
+
+## View Businesses
+
+GET
+
+/businesses
+
+Purpose:
+
+Returns entertainment businesses.
+
+Filters:
+
+- Location
+- Category
+- Rating
+- Price
+- Availability
+
+---
+
+## Business Details
+
+GET
+
+/businesses/{id}
+
+Purpose:
+
+Returns complete business information.
+
+---
+
+# Booking APIs
+
+## Create Booking
+
+POST
+
+/bookings
+
+Purpose:
+
+Allows customers to reserve experiences.
+
+---
+
+## View Bookings
+
+GET
+
+/bookings
+
+Purpose:
+
+Shows customer booking history.
+
+---
+
+# Review APIs
+
+## Create Review
+
+POST
+
+/reviews
+
+Purpose:
+
+Allows customers to share experiences.
+
+---
+
+## View Reviews
+
+GET
+
+/reviews/{businessId}
+
+Purpose:
+
+Shows customer feedback.
+
+---
+
+# Payment APIs
+
+## Create Payment
+
+POST
+
+/payments
+
+Purpose:
+
+Processes transactions.
+
+---
+
+## Payment Status
+
+GET
+
+/payments/{id}
+
+Purpose:
+
+Checks payment status.
+
+---
+
+# Search APIs
+
+## Nearby Search
+
+GET
+
+/search/nearby
+
+Purpose:
+
+Finds entertainment places close to customers.
+
+Filters:
+
+- Distance
+- Category
+- Rating
+- Offers
+- Customer experience
+
+---
+
+# Notification APIs
+
+Handles:
+
+- Booking updates
+- Promotions
+- Messages
+- System notifications
+
+---
+
+# Security Rules
+
+All APIs must implement:
+
+- Authentication checks
+- Permission checks
+- Input validation
+- Rate limiting
+- Error handling
+- Activity logging
+
+---
+
+# Future API Expansion
+
+The API should support:
+
+- Hotel booking
+- Flight booking
+- Transportation
+- AI recommendations
+- Event planning
+
+---
+
+# Engineering Principle
+
+The API must be:
+
+- Secure
+- Reliable
+- Fast
+- Easy to expand
