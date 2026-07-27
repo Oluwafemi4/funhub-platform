@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String   @id @default(uuid())
+
+  firstName    String
+  lastName     String
+
+  username     String?  @unique
+  email        String   @unique
+  phoneNumber  String?  @unique
+
+  passwordHash String
+
+  profilePhoto String?
+  bio          String?
+  city         String?
+
+  roles        String[] @default(["customer"])
+
+  isVerified   Boolean  @default(false)
+  status       String   @default("ACTIVE")
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
