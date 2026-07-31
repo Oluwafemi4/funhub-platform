@@ -42,6 +42,8 @@ export class AuthService {
 
   async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
+    console.log('Login email:', email);
+    console.log('Login password:', password);
 
     const user = await this.prisma.user.findUnique({
       where: {
@@ -49,6 +51,7 @@ export class AuthService {
       },
     });
 
+   console.log('User found:', user);
     if (!user) {
       throw new ConflictException('Invalid email or password');
     }
@@ -58,6 +61,7 @@ export class AuthService {
       user.passwordHash,
     );
 
+    console.log('Password match:', passwordMatch);
     if (!passwordMatch) {
       throw new ConflictException('Invalid email or password');
     }
@@ -67,6 +71,8 @@ export class AuthService {
       email: user.email,
     });
 
+   console.log('Access token generated:', accesstoken);
+   
     return {
       message: 'Login successful',
       accessToken: accesstoken,

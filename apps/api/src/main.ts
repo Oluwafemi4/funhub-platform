@@ -9,6 +9,14 @@ async function bootstrap() {
     .setTitle('FunHub API')
     .setDescription('FunHub platform API documentation')
     .setVersion('1.0')
+   .addBearerAuth(
+   {
+   type: 'http',
+   scheme: 'bearer',
+   bearerFormat: 'JWT',
+   },
+   'JWT',
+  )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
