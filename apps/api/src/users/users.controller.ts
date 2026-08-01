@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -6,18 +6,17 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('users')
 export class UsersController {
-@Get('profile')
+
+  @Get('profile')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth('JWT')
-getProfile() {
-  return {
-    message: 'This is a protected profile route',
-  };
+getProfile(@Request() req) {
+  return req.user;
 }
 
 constructor(
-    private usersService: UsersService,
-  ) {}
+  private usersService: UsersService,
+) {}
 
   @Post('register')
   createUser(
