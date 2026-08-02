@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import { ChangePasswordDto } from './dto/change-password.dto';
 
 
 @Controller('users')
@@ -28,7 +29,18 @@ updateProfile(
     updateUserDto,
   );
 }
-
+@Patch('change-password')
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth('JWT')
+changePassword(
+  @Request() req,
+  @Body() changePasswordDto: ChangePasswordDto,
+) {
+  return this.usersService.changePassword(
+    req.user.userId,
+    changePasswordDto,
+  );
+}
 
 constructor(
   private usersService: UsersService,

@@ -1,8 +1,9 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
+import { ChangePasswordDto } from './dto/change-password.dto';
 
 @Injectable()
 export class UsersService {
@@ -100,5 +101,47 @@ return user;
   });
 
   return updatedUser;
+}
+
+async changePassword(
+  userId: string,
+  changePasswordDto: ChangePasswordDto,
+) {
+  const user = await this.prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    throw new UnauthorizedException('User not found');
+  }
+
+  const passwordMatches = await bcrypt.compare(
+    changePasswordDto.currentPassword,
+    user.passwordHash,
+  );
+
+  if (!passwordMatches) {
+    throw new UnauthorizedException('Current password is incorrect');
+  }
+
+  const newPasswordHash = await bcrypt.hash(
+    changePasswordDto.newPassword,
+    10,
+  );
+
+  await this.prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      passwordHash: newPasswordHash,
+    },
+  });
+
+  return {
+    message: 'Password changed successfully',
+  };
 }
 }
