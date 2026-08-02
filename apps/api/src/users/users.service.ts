@@ -1,6 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -73,7 +74,31 @@ select: {
 });
   
 return user;
+  }  
   
-  
-  }
+ async updateProfile(userId: string, updateUserDto: UpdateUserDto) {
+  const updatedUser = await this.prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: updateUserDto,
+    select: {
+      id: true,
+      firstName: true,
+      lastName: true,
+      email: true,
+      phoneNumber: true,
+      city: true,
+      bio: true,
+      profilePhoto: true,
+      roles: true,
+      isVerified: true,
+      status: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+
+  return updatedUser;
+}
 }
