@@ -1,4 +1,5 @@
 import { Controller, Post, Get, Body, Param, Req, UseGuards } from '@nestjs/common';
+import {ApiBearerAuth } from '@nestjs/swagger';
 import { BusinessService } from './business.service';
 import { CreateBusinessDto } from './dto/create-business.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -12,6 +13,7 @@ export class BusinessController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('JWT')
   create(
     @Req() req,
     @Body() createBusinessDto: CreateBusinessDto,
