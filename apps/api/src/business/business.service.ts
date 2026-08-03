@@ -99,11 +99,6 @@ export class BusinessService {
       },
     });
 
-    console.log('business from DB:', business);
-    console.log('Business owner:', business?.ownerId);
-    console.log('Logged in user:', ownerId);
-    console.log('Business ID:', id);
-
     if (!business) {
       throw new NotFoundException('Business not found');
     }
