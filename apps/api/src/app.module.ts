@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { BusinessModule } from './business/business.module';
 import { UploadsModule } from './uploads/uploads.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UploadsModule } from './uploads/uploads.module';
     PrismaModule,
     BusinessModule,
     UploadsModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
