@@ -11,9 +11,30 @@ export class CloudinaryService {
     });
   }
 
-  async uploadImage(file: string, folder: string) {
-    return await cloudinary.uploader.upload(file, {
-      folder,
+  async uploadImage(file: Buffer, folder: string) {
+    return new Promise<{
+      secure_url: string;
+      public_id: string;
+    }>((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        {
+          folder,
+        },
+        (error, result) => {
+          if (error) {
+            reject(error);
+          } else if (result) {
+            resolve({
+              secure_url: result.secure_url,
+              public_id: result.public_id,
+            });
+          } else {
+            reject(new Error('Cloudinary upload returned no result'));
+          }
+        },
+      );
+
+      uploadStream.end(file);
     });
   }
 

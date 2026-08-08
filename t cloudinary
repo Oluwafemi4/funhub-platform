@@ -1,0 +1,12 @@
+[33mcommit ba7156e05355f57e04de3144955e2b8a81d5b007[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Olabisi Oluwafemi Samson <olabisifemi4@gmail.com>
+Date:   Tue Aug 4 13:35:31 2026 +0100
+
+    couldinary added
+
+ apps/api/package-lock.json                    | 13 [32m+++++++++++++[m
+ apps/api/package.json                         |  1 [32m+[m
+ apps/api/src/app.module.ts                    |  2 [32m++[m
+ apps/api/src/cloudinary/cloudinary.module.ts  |  8 [32m++++++++[m
+ apps/api/src/cloudinary/cloudinary.service.ts | 23 [32m+++++++++++++++++++++++[m
+ 5 files changed, 47 insertions(+)

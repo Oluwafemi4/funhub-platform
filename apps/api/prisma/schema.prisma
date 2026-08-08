@@ -51,7 +51,8 @@ model Business {
 model BusinessImage {
   id         String   @id @default(uuid())
   url        String
-  type       ImageType
+ publicId    String
+ type       ImageType
 
   businessId String
   business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
